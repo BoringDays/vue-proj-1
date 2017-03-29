@@ -4,7 +4,7 @@
     <form-preview :header-label="productDetail.headerLabel" header-value="&nbsp;" :bodyItems="productDetail.list"></form-preview>
   </div>
 </template>
-<style lang="less" scope>
+<style lang="less" scoped>
 
 </style>
 <script>

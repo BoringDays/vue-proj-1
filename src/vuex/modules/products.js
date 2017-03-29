@@ -6,7 +6,7 @@ export default {
     products: [],
   },
   getters: {
-    getProducts(state) {
+    [types.GET_PRODUCTS](state) {
       return state.products;
     },
   },
@@ -18,10 +18,8 @@ export default {
     },
   },
   actions: {
-    GET_ALL_PRODUCTS: ({ commit }) => {
-      api.getProducts().then((res) => {
-        commit(types.GET_PRODUCTS, res.data);
-      });
-    },
+    [types.GET_PRODUCTS]: ({ commit }) => api.getProducts().then((res) => {
+      commit(types.GET_PRODUCTS, res.data);
+    }),
   },
 };

@@ -2,14 +2,14 @@
   <div>
     <app-header />
     <swiper id="swiper" auto :loop="true" :aspect-ratio="300/800">
-      <swiper-item class="swiper-item" v-for="item in swiperData">
+      <swiper-item class="swiper-item" v-for="item in swiperData" :key="item.id">
         <img :src="item.src" :alt="item.desc">
       </swiper-item>
     </swiper>
-    <div class="weui_panel hottest-project">
-      <div class="weui_panel_hd">最热项目</div>
-      <div class="weui_panel_bd">
-        <card v-for="item in listData" v-if="item.isHot">
+    <div class="weui-panel hottest-project">
+      <div class="weui-panel__hd">最热项目</div>
+      <div class="weui-panel__bd">
+        <card v-for="item in listData" v-if="item.isHot" :key="item.id">
           <img slot="header" :src="item.descImg" style="width:100%;display:block;">
           <div slot="content" class="card-padding">
             <p class="project-title">{{item.name}}</p>
@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { Panel, Swiper, SwiperItem, Group, Cell, Card } from 'vux';
-// import axios from 'axios';
+import * as types from '../vuex/mutations/types';
 import AppHeader from './AppHeader';
 import AppNavbar from './AppNavbar';
 
@@ -41,14 +41,36 @@ export default {
     AppNavbar,
   },
   computed: {
-    ...mapGetters([
-      'getIndexSettings',
-    ]),
+    ...mapGetters({
+      getIndexSettings: types.GET_INDEX_DATA,
+    }),
   },
   methods: {
-    ...mapActions({
-      getIndexData: 'GET_INDEX_SETTINGS',
+    ...mapMutations({
+      setHeaderState: types.SET_HEADER_STATE,
+      setNavState: types.SET_NAV_STATE,
     }),
+    ...mapActions({
+      getIndexData: types.GET_INDEX_DATA,
+    }),
+  },
+  created() {
+    this.setHeaderState({
+      show: true,
+      setting: {
+        title: 'Index',
+        'left-options': {
+          showBack: false,
+        },
+      },
+    });
+    this.setNavState({
+      show: true,
+      activeIndex: 0,
+      itemSetting: {
+
+      },
+    });
   },
   mounted() {
     this.getIndexData().then(() => {
@@ -65,7 +87,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .swiper-item img {
     width: 100%;
   }

@@ -6,7 +6,7 @@ export default {
     indexData: {},
   },
   getters: {
-    getIndexSettings: state => state.indexData,
+    [types.GET_INDEX_DATA]: state => state.indexData,
   },
   mutations: {
     [types.GET_INDEX_DATA](state, data) {
@@ -16,11 +16,8 @@ export default {
     },
   },
   actions: {
-    GET_INDEX_SETTINGS: ({ commit }) => {
-      const result = api.getIndexSettings().then((res) => {
-        commit(types.GET_INDEX_DATA, res.data.data);
-      });
-      return result;
-    },
+    [types.GET_INDEX_DATA]: ({ commit }) => api.getIndexSettings().then((res) => {
+      commit(types.GET_INDEX_DATA, res.data.data);
+    }),
   },
 };
