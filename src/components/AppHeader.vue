@@ -17,29 +17,17 @@
   }
 </style>
 <script>
-  import { mapGetters } from 'vuex';
+//  import { mapGetters } from 'vuex';
   import { XHeader } from 'vux';
-  import * as types from '../vuex/mutations/types';
+//  import * as types from '../vuex/mutations/types';
 
   export default{
+    props: ['headerState'],
     data() {
-      return {
-        headerState: {
-          show: true,
-          setting: {},
-        },
-      };
+      return {};
     },
     components: {
       XHeader,
-    },
-    computed: {
-      ...mapGetters({
-        getHeaderState: types.GET_HEADER_STATE,
-      }),
-    },
-    mounted() {
-      this.headerState = this.getHeaderState;
     },
   };
 </script>

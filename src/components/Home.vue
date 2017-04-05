@@ -1,6 +1,5 @@
 <template>
   <div>
-    <app-header />
     <swiper id="swiper" auto :loop="true" :aspect-ratio="300/800">
       <swiper-item class="swiper-item" v-for="item in swiperData" :key="item.id">
         <img :src="item.src" :alt="item.desc">
@@ -18,7 +17,6 @@
         </card>
       </div>
     </div>
-    <app-navbar />
   </div>
 </template>
 
@@ -26,19 +24,15 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import { Panel, Swiper, SwiperItem, Group, Cell, Card } from 'vux';
 import * as types from '../vuex/mutations/types';
-import AppHeader from './AppHeader';
-import AppNavbar from './AppNavbar';
 
 export default {
   components: {
-    AppHeader,
     Panel,
     Swiper,
     SwiperItem,
     Group,
     Cell,
     Card,
-    AppNavbar,
   },
   computed: {
     ...mapGetters({
@@ -54,7 +48,27 @@ export default {
       getIndexData: types.GET_INDEX_DATA,
     }),
   },
-  created() {
+//  created() {
+//    this.setHeaderState({
+//      show: true,
+//      setting: {
+//        title: 'Index',
+//        'left-options': {
+//          showBack: false,
+//        },
+//      },
+//    });
+//    this.setNavState({
+//      show: true,
+//      activeIndex: 0,
+//      itemSetting: {
+//
+//      },
+//    });
+//  },
+  mounted() {
+    // eslint-disable-next-line
+    debugger;
     this.setHeaderState({
       show: true,
       setting: {
@@ -71,8 +85,6 @@ export default {
 
       },
     });
-  },
-  mounted() {
     this.getIndexData().then(() => {
       this.swiperData = this.getIndexSettings.swiperInfo;
       this.listData = this.getIndexSettings.hotProjects;
