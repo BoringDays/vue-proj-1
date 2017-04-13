@@ -17,17 +17,22 @@
   }
 </style>
 <script>
-//  import { mapGetters } from 'vuex';
+  import { mapGetters } from 'vuex';
   import { XHeader } from 'vux';
-//  import * as types from '../vuex/mutations/types';
+  import * as types from '../vuex/mutations/types';
 
   export default{
-    props: ['headerState'],
     data() {
       return {};
     },
     components: {
       XHeader,
+    },
+    computed: {
+      // 教训，直接取getters就好了，无需自己手动声明data或者watch去调用，不然可能会出现组件的data跟你通过getters拿到的data不一致的笑话
+      ...mapGetters({
+        headerState: types.GET_HEADER_STATE,
+      }),
     },
   };
 </script>

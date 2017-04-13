@@ -1,6 +1,5 @@
 <template>
   <div>
-    <app-header />
     <flexbox :gutter="0" orient="vertical" :style="swiperListViewStyle">
       <flexbox-item class="tabStyle">
         <tab>
@@ -19,19 +18,16 @@
         </scroller>
       </flexbox-item>
     </flexbox>
-    <app-navbar />
   </div>
 </template>
 
 <script>
+  import { mapGetters, mapMutations, mapActions } from 'vuex';
   import { Flexbox, FlexboxItem, Swiper, SwiperItem, Tab, TabItem, Scroller, Group, Cell } from 'vux';
-  import axios from 'axios';
-  import AppHeader from './AppHeader';
-  import AppNavbar from './AppNavbar';
+  import * as types from '../vuex/mutations/types';
 
   export default {
     components: {
-      AppHeader,
       Flexbox,
       FlexboxItem,
       Swiper,
@@ -41,25 +37,50 @@
       Scroller,
       Group,
       Cell,
-      AppNavbar,
     },
-    beforeCreate() {
-      const self = this;
-
-      axios.get('/static/datas/product_list.json').then((res) => {
-        self.listData = res.data.data;
-        self.currentListData = self.listData;
-      }).catch(() => {
-        self.listData = [];
-        self.currentListData = [];
+    computed: {
+      ...mapGetters({
+//        getHeaderState: types.GET_HEADER_STATE,
+        getProductsData: types.GET_PRODUCTS,
+      }),
+    },
+    created() {
+      this.setHeaderState({
+        show: true,
+        setting: {
+          title: 'Products',
+          'left-options': {
+            showBack: false,
+          },
+        },
       });
-    },
-    beforeMount() {
+      this.setNavState({
+        show: true,
+        activeIndex: 1,
+        itemSetting: {
+
+        },
+      });
       this.swiperListViewStyle = {
         height: `${document.body.clientHeight - 46 - 55}px`,
       };
     },
+    mounted() {
+      // eslint-disable-next-line
+//      console.log('header has set');
+      this.getProducts().then(() => {
+        this.listData = this.getProductsData;
+        this.currentListData = this.listData;
+      });
+    },
     methods: {
+      ...mapMutations({
+        setHeaderState: types.SET_HEADER_STATE,
+        setNavState: types.SET_NAV_STATE,
+      }),
+      ...mapActions({
+        getProducts: types.SET_PRODUCTS,
+      }),
       tabClick(type) {
         const self = this;
 

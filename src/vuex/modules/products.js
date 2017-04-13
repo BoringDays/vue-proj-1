@@ -6,20 +6,18 @@ export default {
     products: [],
   },
   getters: {
-    [types.GET_PRODUCTS](state) {
-      return state.products;
-    },
+    [types.GET_PRODUCTS]: state => state.products,
   },
   mutations: {
-    [types.GET_PRODUCTS](state, data) {
+    [types.SET_PRODUCTS](state, data) {
       // 禁止直接修改函数参数。
       const s = state;
       s.products = data;
     },
   },
   actions: {
-    [types.GET_PRODUCTS]: ({ commit }) => api.getProducts().then((res) => {
-      commit(types.GET_PRODUCTS, res.data);
+    [types.SET_PRODUCTS]: ({ commit }) => api.getProducts().then((res) => {
+      commit(types.SET_PRODUCTS, res.data.data);
     }),
   },
 };

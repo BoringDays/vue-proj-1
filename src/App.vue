@@ -1,22 +1,15 @@
 <template>
   <div style="height: 100%">
     <view-box>
-      <app-header :headerState="headerState" />
+      <app-header />
       <router-view></router-view>
-      <app-navbar :navState="navState" />
+      <app-navbar />
     </view-box>
   </div>
 </template>
 
 <script>
-  import {
-//    mapState,
-    mapGetters,
-//    mapMutations,
-//    mapActions
-  } from 'vuex';
   import { ViewBox } from 'vux';
-  import * as types from './vuex/mutations/types';
   import AppHeader from './components/AppHeader';
   import AppNavbar from './components/AppNavbar';
 
@@ -27,36 +20,8 @@
       AppNavbar,
     },
     data() {
-      return {
-        headerState: {
-          show: true,
-          setting: {},
-        },
-        navState: {
-          show: true,
-          activeIndex: 0,
-          itemSetting: {},
-        },
-      };
+      return {};
     },
-    watch: {
-      $route: 'changeComponentStatus',
-    },
-    methods: {
-      ...mapGetters({
-        getHeaderState: types.GET_HEADER_STATE,
-        getNavState: types.GET_NAV_STATE,
-      }),
-      changeComponentStatus() {
-        // eslint-disable-next-line
-        debugger;
-        this.headerState = this.getHeaderState;
-        this.navState = this.getNavState;
-      },
-    },
-//    mounted() {
-//      this.headerState = this.getHeaderState;
-//    },
   };
 </script>
 

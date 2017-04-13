@@ -48,27 +48,7 @@ export default {
       getIndexData: types.GET_INDEX_DATA,
     }),
   },
-//  created() {
-//    this.setHeaderState({
-//      show: true,
-//      setting: {
-//        title: 'Index',
-//        'left-options': {
-//          showBack: false,
-//        },
-//      },
-//    });
-//    this.setNavState({
-//      show: true,
-//      activeIndex: 0,
-//      itemSetting: {
-//
-//      },
-//    });
-//  },
-  mounted() {
-    // eslint-disable-next-line
-    debugger;
+  created() {
     this.setHeaderState({
       show: true,
       setting: {
@@ -85,6 +65,8 @@ export default {
 
       },
     });
+  },
+  mounted() {
     this.getIndexData().then(() => {
       this.swiperData = this.getIndexSettings.swiperInfo;
       this.listData = this.getIndexSettings.hotProjects;

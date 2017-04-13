@@ -11,6 +11,7 @@ export const GET_INDEX_DATA = 'GET_INDEX_DATA';
 
 // products
 export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const SET_PRODUCTS = 'SET_PRODUCTS';
 
 // product
 export const GET_PRODUCT = 'GET_PRODUCT';
