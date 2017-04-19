@@ -59,11 +59,10 @@ mock.onGet('/products').reply(200, {
   data: products,
 });
 
-for (let i = 1; i < 7; i += 1) {
-  mock.onGet('/product', { params: { id: i } }).reply(200, {
-    data: products.filter(item => item.id === i),
-  });
-}
+// todo: 用express或koa搭个真实后台代替
+mock.onGet('/product').reply(200, {
+  data: products.filter(item => item.id === 1),
+});
 
 mock.onGet('/user', { params: { id: 1 } }).reply(200, {
   data: {

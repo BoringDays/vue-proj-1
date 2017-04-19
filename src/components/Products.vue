@@ -68,7 +68,10 @@
     mounted() {
       // eslint-disable-next-line
 //      console.log('header has set');
-      this.getProducts().then(() => {
+      this.getProducts({
+        page: 1,
+        itemsPerPage: 5,
+      }).then(() => {
         this.listData = this.getProductsData;
         this.currentListData = this.listData;
       });
@@ -79,7 +82,7 @@
         setNavState: types.SET_NAV_STATE,
       }),
       ...mapActions({
-        getProducts: types.SET_PRODUCTS,
+        getProducts: types.GET_PRODUCTS,
       }),
       tabClick(type) {
         const self = this;

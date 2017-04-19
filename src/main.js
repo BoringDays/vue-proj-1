@@ -8,7 +8,7 @@ import store from './vuex/store';
 import router from './router';
 // import axios from 'axios';
 import App from './App';
-import './mock';
+// import './mock';
 
 ES6Promise.polyfill(); // ie11或以下浏览器没有原生promise支持
 FastClick.attach(document.body);

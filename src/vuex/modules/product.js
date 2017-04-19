@@ -6,9 +6,7 @@ export default {
     product: {},
   },
   getters: {
-    getProduct(state) {
-      return state.product;
-    },
+    [types.GET_PRODUCT]: state => state.product,
   },
   mutations: {
     [types.GET_PRODUCT](state, data) {
@@ -18,9 +16,9 @@ export default {
     },
   },
   actions: {
-    GET_PRODUCT: ({ commit }, id) => {
+    [types.GET_PRODUCT]: ({ commit }, id) => {
       api.getProduct(id).then((res) => {
-        commit(types.GET_PRODUCT, res.data);
+        commit(types.GET_PRODUCT, res.data.data);
       });
     },
   },

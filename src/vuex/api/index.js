@@ -1,18 +1,20 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = '/static/datas';
+// axios.defaults.baseURL = '/api';
 
 export default {
   getIndexSettings() {
     return axios.get('/indexSettings');
   },
-  getProducts() {
-    return axios.get('/products');
+  getProducts(params) {
+    return axios.get('/products', {
+      params,
+    });
   },
-  getProduct(id) {
+  getProduct(productID) {
     return axios.get('/product', {
       params: {
-        id,
+        id: productID,
       },
     });
   },

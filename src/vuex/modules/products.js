@@ -9,15 +9,15 @@ export default {
     [types.GET_PRODUCTS]: state => state.products,
   },
   mutations: {
-    [types.SET_PRODUCTS](state, data) {
+    [types.GET_PRODUCTS](state, data) {
       // 禁止直接修改函数参数。
       const s = state;
       s.products = data;
     },
   },
   actions: {
-    [types.SET_PRODUCTS]: ({ commit }) => api.getProducts().then((res) => {
-      commit(types.SET_PRODUCTS, res.data.data);
+    [types.GET_PRODUCTS]: ({ commit }, params) => api.getProducts(params).then((res) => {
+      commit(types.GET_PRODUCTS, res.data.data);
     }),
   },
 };
