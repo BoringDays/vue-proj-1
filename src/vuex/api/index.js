@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// axios.defaults.baseURL = '/api';
+axios.defaults.baseURL = '/api';
 
 export default {
   getIndexSettings() {
@@ -8,7 +8,10 @@ export default {
   },
   getProducts(params) {
     return axios.get('/products', {
-      params,
+      params: {
+        page: params.page,
+        itemsPerPage: params.itemsPerPage,
+      },
     });
   },
   getProduct(productID) {

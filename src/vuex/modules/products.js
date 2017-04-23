@@ -12,7 +12,7 @@ export default {
     [types.GET_PRODUCTS](state, data) {
       // 禁止直接修改函数参数。
       const s = state;
-      s.products = data;
+      s.products = data.list;
     },
   },
   actions: {

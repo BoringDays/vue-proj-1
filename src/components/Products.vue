@@ -72,6 +72,8 @@
         page: 1,
         itemsPerPage: 5,
       }).then(() => {
+        // eslint-disable-next-line
+//        console.log(this.getProductsData)
         this.listData = this.getProductsData;
         this.currentListData = this.listData;
       });
