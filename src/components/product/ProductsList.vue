@@ -1,5 +1,24 @@
 <template>
-  <router-view></router-view>
+  <div>
+    <flexbox :gutter="0" orient="vertical" :style="swiperListViewStyle">
+      <flexbox-item class="tabStyle">
+        <tab>
+          <tab-item class="tab-item" @on-item-click="tabClick()" selected>All</tab-item>
+          <tab-item class="tab-item" @on-item-click="tabClick(1)">Type 1</tab-item>
+          <tab-item class="tab-item" @on-item-click="tabClick(2)">Type 2</tab-item>
+          <tab-item class="tab-item" @on-item-click="tabClick(3)">Type 3</tab-item>
+        </tab>
+      </flexbox-item>
+      <flexbox-item id="productList">
+        <scroller lock-x scrollbar-y ref="scroller" height="-145">
+          <group class="swiper-list">
+            <cell v-for="item in currentListData" :key="item.id" :title="item.name" :inline-desc="item.desc"
+                  :link="`/product/${item.id}`"></cell>
+          </group>
+        </scroller>
+      </flexbox-item>
+    </flexbox>
+  </div>
 </template>
 
 <script>
@@ -92,5 +111,18 @@
 </script>
 
 <style lang="less">
+  @import "../../assets/stylesheets/common.less";
 
+  .tabStyle {
+    flex: none !important;
+    height: 44px;
+  }
+
+  #productList {
+    .mixin_full_height;
+  }
+
+  #productList .weui_cells {
+    margin-top: 0;
+  }
 </style>

@@ -13,6 +13,16 @@ const routes = [{
 }, {
   path: '/product',
   component: Products,
+  children: [
+    {
+      path: '/',
+      component: Products,
+    },
+    {
+      path: 'add',
+      component: Products,
+    },
+  ],
 }, {
   path: '/product/:id',
   component: Product,

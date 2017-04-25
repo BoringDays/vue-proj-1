@@ -9,7 +9,7 @@ export default {
     [types.GET_PRODUCTS]: state => state.products,
   },
   mutations: {
-    [types.GET_PRODUCTS](state, data) {
+    [types.GET_PRODUCTS]: (state, data) => {
       // 禁止直接修改函数参数。
       const s = state;
       s.products = data.list;
