@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../components/Home';
-import Products from '../components/Products';
-import Product from '../components/Product';
-import Config from '../components/Config';
+import Home from '../components/Home.vue';
+import Products from '../components/Products.vue';
+import AddProduct from '../components/product/AddProduct.vue';
+import ProductsList from '../components/product/ProductsList.vue';
+import Product from '../components/Product.vue';
+import Config from '../components/Config.vue';
 
 Vue.use(VueRouter);
 
@@ -16,11 +18,11 @@ const routes = [{
   children: [
     {
       path: '/',
-      component: Products,
+      component: ProductsList,
     },
     {
       path: 'add',
-      component: Products,
+      component: AddProduct,
     },
   ],
 }, {

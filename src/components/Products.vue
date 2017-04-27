@@ -4,21 +4,9 @@
 
 <script>
   import { mapGetters, mapMutations, mapActions } from 'vuex';
-  import { Flexbox, FlexboxItem, Swiper, SwiperItem, Tab, TabItem, Scroller, Group, Cell } from 'vux';
-  import * as types from '../../vuex/mutations/types';
+  import * as types from '../vuex/mutations/types';
 
   export default {
-    components: {
-      Flexbox,
-      FlexboxItem,
-      Swiper,
-      SwiperItem,
-      Tab,
-      TabItem,
-      Scroller,
-      Group,
-      Cell,
-    },
     computed: {
       ...mapGetters({
 //        getHeaderState: types.GET_HEADER_STATE,
@@ -42,22 +30,6 @@
 
         },
       });
-      this.swiperListViewStyle = {
-        height: `${document.body.clientHeight - 46 - 55}px`,
-      };
-    },
-    mounted() {
-      // eslint-disable-next-line
-//      console.log('header has set');
-      this.getProducts({
-        page: 1,
-        itemsPerPage: 5,
-      }).then(() => {
-        // eslint-disable-next-line
-//        console.log(this.getProductsData)
-        this.listData = this.getProductsData;
-        this.currentListData = this.listData;
-      });
     },
     methods: {
       ...mapMutations({
@@ -67,18 +39,8 @@
       ...mapActions({
         getProducts: types.GET_PRODUCTS,
       }),
-      tabClick(type) {
-        const self = this;
-
-        if (type) {
-          self.currentListData = self.listData.filter(item => (item.type === type));
-          self.swiperListViewIndex = type;
-        } else {
-          self.currentListData = self.listData;
-          self.swiperListViewIndex = 0;
-        }
-
-        self.$refs.scroller.reset();
+      addProduct(){
+        this.$route.push('/product/add');
       },
     },
     data() {
