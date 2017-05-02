@@ -53,6 +53,10 @@
             showBack: false,
           },
         },
+        rightLink: {
+          show: true,
+          title: '新增',
+        },
       });
       this.setNavState({
         show: true,
@@ -98,6 +102,9 @@
         }
 
         self.$refs.scroller.reset();
+      },
+      addProduct() {
+        this.$route.push('/product/add');
       },
     },
     data() {

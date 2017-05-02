@@ -1,6 +1,9 @@
 <template>
   <div class="header-container" v-if="headerState.show">
-    <x-header class="app-header" :left-options="headerState.setting['left-options']">{{headerState.setting.title}}</x-header>
+    <x-header class="app-header" :left-options="headerState.setting['left-options']">
+      {{headerState.setting.title}}
+      <a :class="[headerState.rightLink.show ? '': 'hidden']" slot="right">{{headerState.rightLink.title}}</a>
+    </x-header>
   </div>
 </template>
 <style lang="less" scoped>

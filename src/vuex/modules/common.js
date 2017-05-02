@@ -5,6 +5,7 @@ export default {
     header: {
       show: true,
       setting: {},
+      rightLink: {},
     },
     nav: {
       show: true,
