@@ -55,7 +55,8 @@
         },
         rightLink: {
           show: true,
-          title: '新增',
+          title: 'Add product',
+          to: '/product/add',
         },
       });
       this.setNavState({

@@ -2,7 +2,7 @@
   <div class="header-container" v-if="headerState.show">
     <x-header class="app-header" :left-options="headerState.setting['left-options']">
       {{headerState.setting.title}}
-      <a :class="[headerState.rightLink.show ? '': 'hidden']" slot="right">{{headerState.rightLink.title}}</a>
+      <router-link :class="[headerState.rightLink.show ? '': 'hidden']" slot="right" :to="headerState.rightLink.to">{{headerState.rightLink.title}}</router-link>
     </x-header>
   </div>
 </template>
